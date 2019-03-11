@@ -43,9 +43,8 @@ public class CambioDeCartas {
     
     
     
-    public static String indicesA = "";
-    public static String indicesB = "";
-    public static Scanner entrada = new Scanner();
+    
+    
     
     public static void main(String[] args) throws IOException {
 //        
@@ -204,115 +203,156 @@ public class CambioDeCartas {
 ////</editor-fold>
 //        
 
+//
+////<editor-fold defaultstate="collapsed" desc="intercambio 04">
+//        
+//        int arrA[];
+//        int arrHashA[];
+//        
+//        int arrB[];
+//        int arrHashB[];
+//
+////        Scanner entrada = new Scanner();
+//
+//        int lgthA = intconvert(entrada.next());
+//        int lgthB = intconvert(entrada.next());
+//
+//        int minCartas = 0;
+//        
+//        
+//        
+//        while(lgthA != 0 && lgthB != 0){
+//            int arrEvaluar[] = null;
+//            arrA = new int[100001];
+//            arrB = new int[100001];
+//            
+//            
+//            int temp = 0 ;     
+//            
+//            //se evalua quien tiene mas cartas, o si tienen las mismas
+//           // ArrayList<Object> MethodResultList= fillAndHashArr(arrA, lgthA);
+//           // int arrARes[] = MethodResultList.get(1);
+//            
+//            
+//            
+//            Set<String> indicesHashA = new HashSet<String>(Arrays.asList( (indicesA.trim()).split(" ") ) );
+//            Set<String> indicesHashB = new HashSet<String>(Arrays.asList( (indicesB.trim()).split(" ") ));
+//            Set<String> Evaluar = null;
+//            
+//            if(lgthA<=lgthB)
+//            {
+//                minCartas = lgthA;
+//                arrEvaluar = arrB;
+//                Evaluar =indicesHashA;
+//               
+//            }else
+//            {
+//                minCartas = lgthB;
+//                arrEvaluar = arrA;
+//                Evaluar =indicesHashB;
+//            }
+//            
+//            int salida = 0 ; 
+//            
+//            for (String o : Evaluar) {
+//                salida+= ( arrEvaluar[intconvert(o)] == 0)?1:0;
+//                
+//            }
+//            //salida
+//            System.out.println(salida);
+//            indicesA = "";
+//            indicesB = "";
+//            lgthA = intconvert(entrada.next());
+//            lgthB = intconvert(entrada.next());
+//            
+//        }
+//
+//
+//
+//
+////</editor-fold>
+//
 
-//<editor-fold defaultstate="collapsed" desc="intercambio 04">
-        
-        int arrA[];
-        int arrHashA[];
-        
-        int arrB[];
-        int arrHashB[];
 
-//        Scanner entrada = new Scanner();
-
-        int lgthA = intconvert(entrada.next());
-        int lgthB = intconvert(entrada.next());
-
-        int minCartas = 0;
+//<editor-fold defaultstate="collapsed" desc="intercambio 05">
+    
+    HashSet<String> hashA = new HashSet<String>();
+    HashSet<String> hashB = new HashSet<String>();
+    
+    int arrA[] = new int[100001];
+    int arrB[] = new int[100001];
+    int arrto[] = null;
+    
+    HashSet<String> MinHash = new HashSet<String>();
+    HashSet<String> to = new HashSet<String>();
+    
+    String arrHasmin[] = null;
+    
+    
+    Scanner entrada = new Scanner();
+    
+    int lgthA = intconvert(entrada.next());
+    int lgthB = intconvert(entrada.next());
+    
+    String temp = "";
+    
+    while (lgthA != 0 && lgthB != 0)
+    {
+        arrA = new int[100001];
+        arrB = new int[100001];
+        hashA = new HashSet<String>();
+        hashB = new HashSet<String>();
         
-        
-        
-        while(lgthA != 0 && lgthB != 0){
-            int arrEvaluar[] = null;
-            arrA = new int[100001];
-            arrB = new int[100001];
-            
-            
-            int temp = 0 ;     
-            
-            //se evalua quien tiene mas cartas, o si tienen las mismas
-            ArrayList<Object> MethodResultList= fillAndHashArr(arrA, lgthA);
-           // int arrARes[] = MethodResultList.get(1);
-            
-            
-            
-            Set<String> indicesHashA = new HashSet<String>(Arrays.asList( (indicesA.trim()).split(" ") ) );
-            Set<String> indicesHashB = new HashSet<String>(Arrays.asList( (indicesB.trim()).split(" ") ));
-            Set<String> Evaluar = null;
-            if(lgthA<=lgthB)
-            {
-                minCartas = lgthA;
-                arrEvaluar = arrB;
-                Evaluar =indicesHashA;
-               
-            }else
-            {
-                minCartas = lgthB;
-                arrEvaluar = arrA;
-                Evaluar =indicesHashB;
-            }
-            
-            int salida = 0 ; 
-            
-            for (String o : Evaluar) {
-                salida+= ( arrEvaluar[intconvert(o)] == 0)?1:0;
-                
-            }
-            //salida
-            System.out.println(salida);
-            indicesA = "";
-            indicesB = "";
-            lgthA = intconvert(entrada.next());
-            lgthB = intconvert(entrada.next());
+         
+        for (int i = 0; i < lgthA; i++) 
+        {
+            temp = entrada.next();
+            hashA.add(temp);
+            arrA[intconvert(temp)]++;
             
         }
-
-
-
+        for (int i = 0; i < lgthB; i++) {
+            temp = entrada.next();
+            hashB.add(temp);
+            arrB[intconvert(temp)]++;
+        }
+        
+        if(hashA.size() >= hashB.size() ){ 
+            MinHash = hashB;
+            arrto = arrA;
+        }else{
+            MinHash = hashA;
+            arrto = arrB;
+        }
+        
+        int cambios = 0 ; 
+        
+        for (String item : MinHash) {
+            cambios+= ( arrto[intconvert(item)] == 0 )?1:0;
+        }
+        System.out.println(cambios);
+        
+        cambios = 0 ; 
+        
+        lgthA = intconvert(entrada.next());
+        lgthB = intconvert(entrada.next());
+        
+    }
+    
+            
+    
 
 //</editor-fold>
       
 
+
     }
-    public static int intconvert(String numero){
+    public static int intconvert(String numero)
+    {
         return Integer.parseInt(numero);
     }
-    public static int[] OnlyfillArrPlayer(int arr[], int limit) throws IOException{
-        int temp = 0;
-        for (int i = 0; i < limit; i++) {
-                temp = intconvert( entrada.next() );
-                arr[temp]++;
-            }
-        return arr;
-    }
     
-    public static ArrayList<Object> fillAndHashArr(int arr[], int limit) throws IOException{
-        
-        int temp = intconvert( entrada.next() );
-        int tempAnt = temp;
-        
-        arr[temp]++;
-        ArrayList<Integer> hashList = new ArrayList<Integer>();
-        hashList.add(temp);
-        ArrayList<Object> salida = new ArrayList<Object>();
-        
-        for (int i = 1; i < limit; i++) {
-                temp = intconvert( entrada.next() );
-                
-            if (tempAnt != temp) 
-            {
-                hashList.add(temp);
-                tempAnt = temp;
-            }
-            
-                arr[temp]++;
-                
-        }
-        
-        salida.add(arr);
-        salida.add(hashList);
-        
-        return salida;
-    }
+    
+    
     
 }
