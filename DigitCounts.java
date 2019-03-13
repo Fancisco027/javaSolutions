@@ -320,9 +320,8 @@ public class Main {
 	                
 	            }else{
 	                entradaa = String.valueOf(Integer.parseInt(entradaa)-1);
-	                arrSalida[0] = exponenteAbajo(entradab); 
+	                arrSalida[0] = exponenteAbajo(entradab);
 	                arrInferior[0] = exponenteAbajo(entradaa);
-	     //           
 	
 	                 arrSalida[0]+= mayorAuno(entradab);
 	                arrInferior[0]+= mayorAuno(entradaa);
