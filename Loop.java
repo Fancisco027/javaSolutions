@@ -88,9 +88,17 @@ public class Loop {
                 */
                 sigNum = intconvert(entrada.next());
                 
-                if(antNum > sigNum && !sentido)
+                if(antNum > sigNum && sentido)
+                {
+
+                    salida++;
+                    sentido = false;
+                
+                    
+                }else if(antNum < sigNum && !sentido)
                 {
                     salida++;
+                    sentido = true;
                 }
                 
                 antNum = sigNum;
