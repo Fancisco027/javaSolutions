@@ -50,6 +50,9 @@ public class Loop {
         return Integer.parseInt(numero);
     }
     public static void main(String[] args) throws IOException {
+        
+        //<editor-fold defaultstate="collapsed" desc="loop">
+        
         Scanner entrada = new Scanner();
         
         int muestras = intconvert(entrada.next());
@@ -58,7 +61,7 @@ public class Loop {
         int arrDeMuestras[];
         
         
-        int contAux = 2;
+        int contAux = 1;
         
         int numInit = 0;
         int sigNum = 0;
@@ -73,23 +76,26 @@ public class Loop {
         
         while(muestras != 0)
         {
+            //antNum = intconvert(entrada.next());
+//            inicial = antNum;
+//            sigNum = intconvert(entrada.next());
+//            //sentido = true;//sube
+//            //salida++; 
+////            if ( sigNum < antNum || sigNum > antNum && muestras == 2)
+////            {
+////                System.out.println("NO DEBE ENTRAR A ESTE BUCLE");
+////                sentido = true;//sube
+////                salida++;
+////                
+////            }
+//            
+
             antNum = intconvert(entrada.next());
             inicial = antNum;
-            sigNum = intconvert(entrada.next());
-            sentido = true;//sube
-            //salida++; 
-            if ( sigNum < antNum || sigNum > antNum && muestras == 2)
-            {
-                System.out.println("NO DEBE ENTRAR A ESTE BUCLE");
-                sentido = true;//sube
-                salida++;
-                
-            }
-            
-            antNum = sigNum;
             
             
-            System.out.println("cont = " + contAux + " muestra = " + muestras);
+            
+            
             
             while(contAux != muestras)
             {
@@ -105,12 +111,15 @@ public class Loop {
                     System.out.println("baja p");
                     salida++;
                     sentido = false;
+                    System.out.println("sentido queda en = " + sentido);
+                    
                 
                 }else if(antNum < sigNum && !sentido)
                 {
                     System.out.println("sube p");
                     salida++;
                     sentido = true;
+                    System.out.println("sentido queda en = " + sentido);
                 }
                 
                 antNum = sigNum;
@@ -122,12 +131,12 @@ public class Loop {
             System.out.println( " ini " + inicial + " fin = " + fin );
             //if salida++;
             
-            if (fin>inicial && !sentido) 
+            if (fin < inicial && !sentido) 
             {
                 System.out.println("baja fin p");
                 salida++;
                 
-            } else if(fin<inicial && sentido)
+            } else if(fin > inicial && sentido)
             {
              
                 System.out.println("sube fin p");
@@ -138,11 +147,10 @@ public class Loop {
             
             System.out.println("SALIDA = " + salida);
             muestras = intconvert(entrada.next());
-            contAux = 2;
+            contAux = 1;
         }
         
-        
-        
+        //</editor-fold>
         
     }
     
