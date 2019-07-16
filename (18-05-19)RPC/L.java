@@ -35,6 +35,8 @@ public class L {
         int cAux = 0;
         
         String salida = "";
+
+        int valIndexSal = 0;
         
         for (int i = 0; i < n; i++) {
             
@@ -48,7 +50,10 @@ public class L {
                 salida+= String.valueOf( cAux ) + " ";
             }else{
                 Arrays.sort(arregloOrdenado);
-                
+                valIndexSal = arregloOrdenado[0];
+
+                arrCajas.indexOf(valIndexSal);
+                            
             }
             
             

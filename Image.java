@@ -81,20 +81,21 @@ public class Image {
         return salidaChar ; 
     }
     
-    public static void charHeight(String cad , int val)
+    public static String charHeight(String cad , int val)
     {
-        
+        String cadsalida = "";
         for (int i = 0; i < val; i++) {
             
-            System.out.println( cad );
+            cadsalida+= cad + "\n";
             
         }
-        
+        return cadsalida;
     }
     
     
     public static void main(String[] args) throws IOException {
         
+        String cadSalida = "";
         Scanner entrada = new Scanner();
         
         int N = intCnonvert(entrada.next());
@@ -119,7 +120,7 @@ public class Image {
 
 
             for (int i = 0; i < N; i++) {
-                charHeight(charWidth(arrChar[i], calculo(M, B)) , calculo(N, A) );
+                cadSalida+=charHeight(charWidth(arrChar[i], calculo(M, B)) , calculo(N, A) );
             }
             
             N = intCnonvert(entrada.next());
