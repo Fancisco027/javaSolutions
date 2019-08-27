@@ -5,15 +5,53 @@
  */
 package laberintos;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.*;
+import java.util.*;
 
 /**
  *
- * @author francisco
+ * @author Francisco
  */
 public class Laberintos {
 
+    
+            
+//<editor-fold defaultstate="collapsed" desc="scanner">
+    static class Scanner{
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer("");
+        int espacios = 0;
+        
+        public String nextLine() throws IOException {
+            if (espacios-- > 0) return ""; 
+            else if (st.hasMoreTokens()) return new StringBuilder(st.nextToken("\n")).toString();
+            return bf.readLine();
+        }
+        
+        public String next() throws IOException {
+            espacios = 0;
+            while(!st.hasMoreTokens()) st = new StringTokenizer(bf.readLine());
+            return st.nextToken();
+        }
+        
+        public boolean hasNext()throws IOException {
+            while(!st.hasMoreTokens()) {
+                String line = bf.readLine();
+                if(line == null) return false;
+                if(line.equals("")) espacios = Math.max(espacios, 0) + 1;
+                st = new StringTokenizer(line);
+            }
+            return true;
+        }
+    }
+//</editor-fold>    
+
+    
+    public static int intConvert(String val)
+    {
+        return Integer.parseInt(val);
+    }
+    
     static class laberinto{
         List<Integer> listVertex;
         public laberinto( List<Integer> lista ){
@@ -23,41 +61,101 @@ public class Laberintos {
         }
         
     }
-    public static void main(String[] args) {
-        // TODO code application logic here
+
+    public static laberinto[] inicializaGFlaberinto( int nItems , laberinto l[] ){
+        
+        for( int i = 0 ; i < nItems ; i++  )
+        {
+            l[i] = new laberinto( new ArrayList() );
+        }
+        return l;
+    }
+    
+        
+    public static void main(String[] args) throws IOException {
+        
+        Scanner entrada = new Scanner();
+        
+        //inicio , Vertices , Aristas
+        int N = 0 , V = 0 , A = 0;
+        
+        //numero de casos
+        int T = intConvert( entrada.next() );
+        
+                
+        //laberinto
+        laberinto arrVertex[];
+        
+        
+        //uniones entrada
+        int arrUnionesIn[] = new int[2];
+        
+        //se prepara variable de salida 
+        int salida = 0;
+        
+        
+        while( T != 0 )
+        {
+            
+            //posicion inicio
+            N = intConvert( entrada.next() );
+
+            //vertices
+            V = intConvert( entrada.next() );
+
+            //aristas
+            A = intConvert( entrada.next() );
+
+            //laberinto
+            arrVertex = new laberinto[ V ];
+
+            //inicializar
+            arrVertex = inicializaGFlaberinto(  arrVertex.length  , arrVertex);
+            
+            for (int i = 0; i < A; i++) {
+                //ingreso de par de vertices
+                arrUnionesIn[0] = intConvert( entrada.next() );//este numero
+                arrUnionesIn[1] = intConvert( entrada.next() );//se une con este
+
+                //se ordena
+                Arrays.sort(arrUnionesIn);
+
+
+                //se evalua si existe elemento en el laberinto
+                if ( arrVertex[arrUnionesIn[0]].listVertex.indexOf( arrUnionesIn[1] ) == -1 ) {
+                    //se ingresa en laberinto
+                    arrVertex[arrUnionesIn[0]].listVertex.add(arrUnionesIn[1]);
+                    salida++;
+                }
+
+                //se ingresa en laberinto
+
+
+            }
+            System.out.println( "Salida = " + ( salida * 2 ) );
+            salida = 0;
+            T--;
+        }
+        
+        
+        
+        
         
         //ArrayList<Integer> p[] = new ArrayList<Integer>[5]();
-        laberinto arrVertex[] = new laberinto[3];
         
         
-        List<Integer> L0 = new ArrayList<Integer>();
-        List<Integer> L1 = new ArrayList<Integer>();
-        List<Integer> L2 = new ArrayList<Integer>();
         
         
-        for (int i = 0; i < 3; i++) {
-            L0.add(i + 1);
-            L1.add( i + 2 );
-            L1.add( i + 3 );
-            
-        }
         
-        arrVertex[0] = new laberinto(L0);
-        arrVertex[1] = new laberinto(L1);
-        arrVertex[2] = new laberinto(L2);
         
-        for (int i = 0; i < arrVertex.length; i++) {
-            for (int j = 0; j < arrVertex[i].listVertex.size(); j++) {
-                
-                System.out.println("Value arr[" + i + "] = " + arrVertex[i].listVertex.get(j));
-                
-                
-            }
-        }
+        
+        
+        
+        
+        
         
 
     
-        
         
     }
     
