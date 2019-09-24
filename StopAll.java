@@ -59,26 +59,34 @@ public class StopAll {
         
     }
     
+    public static Vecindario persistencia = null;
+    
     public static int intConvert( String val ){
         return Integer.parseInt( val );
     }
     
-    public static List<Integer> myOrder( List<Integer> l , Integer toInser )
-    {
-        //si la lista esta vacia
-        if ( l.size() == 0 ) {
-            l.add( toInser );
-            return l;
+    public static String letsOrDeur( Vecindario arrVertex[] , int nodoInicio , Integer nodoBusca ){
+        
+        if ( arrVertex[ nodoInicio ].listVertex.indexOf( nodoBusca ) == -1 ) {
+            return "Lets que lets";
         }
-        if ( l.get( l.size() - 1  ) <= toInser ) {
-            l.add( toInser );
-            return l;
+        
+        if( arrVertex[ nodoInicio ].listVertex.size() == 0  ){
+            return "Deu ruim";
         }
-        if ( l.get( l.size() - 1  ) > toInser ) {
-            l.add( l.size() - 1 , toInser  );
-            return l;
+        
+        
+        for (int i = 0; i < arrVertex[ nodoInicio ].listVertex.size() ; i++) {
+            
+            arrVertex[ nodoInicio ].listVertex.get( i );
+            
+            
+            
         }
-        return l;
+        
+        
+        
+        return "";
     }
     
     public static void main(String[] args) throws IOException {
@@ -113,19 +121,9 @@ public class StopAll {
             ArrKyL[1] = intConvert( entrada.next() );
             Arrays.sort( ArrKyL );
             
-            System.out.println("=========array================");
-            System.out.println("ArrAyb pos[0] : " + ArrKyL[0] + " pos [1] " + ArrKyL[1]);
-            System.out.println("==============================");
-            if( arrVecindario[ ArrKyL[0] ].listVertex.indexOf( ArrKyL[1] ) == -1 ) {
-                System.out.println("    ==valor=");
-                //System.out.println("    " + arrVecindario[ ArrKyL[0] ].listVertex.get( ArrKyL[1] ) );
-                System.out.println("    " + arrVecindario[ ArrKyL[0] ].listVertex.toString() ) ;
-                System.out.println("    ========");
-                System.out.println("Deu ruim");                
-            }
-
-            else 
-                System.out.println("Lets que lets");
+            String salida = letsOrDeur( arrVecindario , ArrKyL[0] - 1 , ArrKyL[1] - 1 );
+            
+            
                 
                 
         }
