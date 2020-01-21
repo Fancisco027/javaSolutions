@@ -89,6 +89,8 @@ public class StopAll {
     
     public static String letsOrDeur( int nodoInicio, int nodoObjetivo , Vecindario[] l )
         {
+            int cont = 0;
+            
             Queue< Integer > q = new LinkedList< Integer >();
             
             Set< Integer > setToQueue = new HashSet<Integer>();
@@ -97,12 +99,23 @@ public class StopAll {
             
             while( !q.isEmpty() )
             {
+                cont++;
+                System.out.println("cont = " + cont + "proceso");
+                System.out.println("Tamanio de QUEUE : " + q.size());
+                System.out.println("==========================");
+                System.out.println("Elementos de cola:");
+                System.out.println( q.toString() );
+                System.out.println("/////////////////////////////");
                 int nodoActual = q.remove();
                 
                 
                 if ( l[ nodoActual ] == null ) {
-                    return "Deu ruim";
+                    System.out.println("Entro al CONDICION EN ");
+                    System.out.println( nodoActual );
+                    continue;
+                    //return "Deu ruim";
                 }
+                
 //                System.out.println("==== CONDICION ===");
 //                System.out.println("Se busca : " + nodoObjetivo + " a partir de: " + nodoActual);
 //                System.out.println( l[ nodoActual ].listVertex.indexOf( nodoObjetivo ) );
@@ -117,13 +130,13 @@ public class StopAll {
 //                    System.out.println("==== Agrega nodos que no existen, PRE son: ===");
 //                    System.out.println( returnStringArray(  setToQueue.toArray()  )  );
 //                    System.out.println("====/.========================================");
-//                    setToQueue.addAll( q ) ;
+                    setToQueue.addAll( q ) ;
 //                    System.out.println("=== Agrega nodos que no existen, POST son: ===");
 //                    System.out.println( returnStringArray(  setToQueue.toArray()  ) );
 //                    System.out.println("====/.========================================");
 //                    
                     setToQueue.addAll( l[ nodoActual ].listVertex ) ;
-                    
+                    q.clear();
                     q.addAll( setToQueue );
 //                    System.out.println("============ La cola es, POST son: ===========");
 //                    System.out.println( q.toString() );
@@ -182,31 +195,32 @@ public class StopAll {
             ArrAyB[0] = intConvert( entrada.next() );
             ArrAyB[1] = intConvert( entrada.next() );
             
-            Arrays.sort( ArrAyB );
+//            Arrays.sort( ArrAyB );
             
             if ( ( arrVecindario[ ArrAyB[0] - 1 ] == null ) ) 
             {
                 arrVecindario[ ArrAyB[0] - 1 ] = new Vecindario( new ArrayList() );
+                //arrVecindario[ ArrAyB[1] - 1 ] = new Vecindario( new ArrayList() );
             }
             
             arrVecindario[ ArrAyB[0] - 1 ].listVertex.add( ArrAyB[1] - 1 );
-            
+            //arrVecindario[ ArrAyB[1] - 1 ].listVertex.add( ArrAyB[0] - 1 );
             //para asignacion de valores siempre restar uno
-            
-            
-            
-            
         }
-        
+        String salida = "";
         for (int j = 0; j < P; j++) 
         {
             
             ArrKyL[0] = intConvert( entrada.next() );
             ArrKyL[1] = intConvert( entrada.next() );
-            Arrays.sort( ArrKyL );
+//            Arrays.sort( ArrKyL );
             
-            System.out.println( letsOrDeur( ArrKyL[0] - 1 , ArrKyL[ 1 ] - 1  , arrVecindario ) );
-            
+            salida = letsOrDeur( ArrKyL[0] - 1 , ArrKyL[ 1 ] - 1  , arrVecindario );
+            if ( !salida.equals("Lets que lets") ) 
+            {
+                salida = letsOrDeur( ArrKyL[1] - 1 , ArrKyL[ 0 ] - 1  , arrVecindario );
+            }
+            System.out.println(salida);
             
             
         }
