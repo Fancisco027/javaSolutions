@@ -11,11 +11,10 @@ import java.util.*;
 
 /**
  *
- * @author Francisco
+ * @author francisco
  */
 public class StopAll {
-    
-    
+
             
 //<editor-fold defaultstate="collapsed" desc="scanner">
     static class Scanner{
@@ -49,29 +48,22 @@ public class StopAll {
     
     static class Vecindario{
         
+        
+        
         List<Integer> listVertex;
-        //Set<Integer> visitados ;
-        
-        //Set<Integer> toQueue ;
-        
         
         public Vecindario( List<Integer> l ){
             this.listVertex = l;
         }
-        public Vecindario( ){
+        public Vecindario(){
             this.listVertex = new ArrayList<Integer>();
-        }
-        
-        public void visitados(   )
-        {
-            //this.visitados = new int[ nOfNodos ];
-            //this.visitados.addAll(visitados);
-            
         }
         
         
         
     }
+    
+    public static Vecindario persistencia = null;
     
     public static int intConvert( String val ){
         return Integer.parseInt( val );
@@ -87,8 +79,13 @@ public class StopAll {
         return salida;
     }
     
+    // parametros
+    // Arreglo (grafo), inicio , nodoObjetivo
+    
     public static String letsOrDeur( int nodoInicio, int nodoObjetivo , Vecindario[] l )
         {
+            int arrVisitados[] = new int[ l.length ];
+            
             int cont = 0;
             
             Queue< Integer > q = new LinkedList< Integer >();
@@ -100,14 +97,14 @@ public class StopAll {
             while( !q.isEmpty() )
             {
                 cont++;
-                System.out.println("cont = " + cont + "proceso");
-                System.out.println("Tamanio de QUEUE : " + q.size());
-                System.out.println("==========================");
-                System.out.println("Elementos de cola:");
-                System.out.println( q.toString() );
-                System.out.println("/////////////////////////////");
+//                System.out.println("cont = " + cont + "proceso");
+//                System.out.println("Tamanio de QUEUE : " + q.size());
+//                System.out.println("==========================");
+//                System.out.println("Elementos de cola:");
+//                System.out.println( q.toString() );
+//                System.out.println("/////////////////////////////");
                 int nodoActual = q.remove();
-                
+                arrVisitados[nodoActual] = 1;
                 
                 if ( l[ nodoActual ] == null ) {
                     System.out.println("Entro al CONDICION EN ");
@@ -121,6 +118,21 @@ public class StopAll {
 //                System.out.println( l[ nodoActual ].listVertex.indexOf( nodoObjetivo ) );
 //                System.out.println("/.=================");
                 
+                for (int i = 0; i < l[ nodoActual ].listVertex.size() ; i++)
+                {
+                    if ( l[nodoActual].listVertex.get(i) == nodoObjetivo )
+                    {
+                        return "Lets que lets";
+                    }
+                    
+                    if ( arrVisitados[ l[nodoActual].listVertex.get(i) ] == 1 )
+                    {
+                        continue;
+                    }
+                    
+                }
+
+
                 //comprobando si existe el nodo objetivo en tal lista objetivo
                 if ( l[ nodoActual ].listVertex.indexOf( nodoObjetivo ) != -1 ) 
                 {
@@ -150,29 +162,6 @@ public class StopAll {
             
             return "Deu ruim";
         }
-//    
-//    public static String letsOrDeur( Vecindario arrVertex[] , int nodoInicio , Integer nodoBusca , Integer sigInicio ){
-//        
-//        int nextVertex = 0 ; 
-//        
-//        if ( arrVertex[ nodoInicio ].listVertex.indexOf( nodoBusca ) == -1 ) {
-//            return "Lets que lets";
-//        }
-//        
-//        if( arrVertex[ nodoInicio ].listVertex.size() == 0  ){
-//            return "Deu ruim";
-//        }
-//        
-//        
-////        for (int i = 0; i < arrVertex[ nodoInicio ].listVertex.size() ; i++) {
-////            
-////            nextVertex = arrVertex[ nodoInicio ].listVertex.get( i );
-////            
-////        }
-//        
-//        return "";
-//    }
-//    
     
     public static void main(String[] args) throws IOException {
         
@@ -275,6 +264,7 @@ public class StopAll {
 //        }
 //        //</editor-fold>
 
+        
     }
     
 }
