@@ -104,11 +104,16 @@ public class StopAll {
 //                System.out.println( q.toString() );
 //                System.out.println("/////////////////////////////");
                 int nodoActual = q.remove();
+                
+                System.out.println("==================");
+                System.out.println( "nodoActial = " + ( nodoActual + 1 ) );
+                if ( l[ nodoActual ] != null )
+                    System.out.println("LISTA > " + l[ nodoActual ].listVertex.toString());
                 arrVisitados[nodoActual] = 1;
                 
                 if ( l[ nodoActual ] == null ) {
-                    System.out.println("Entro al CONDICION EN ");
-                    System.out.println( nodoActual );
+//                    Syste'm.out.println("Entro al CONDICION EN ");
+//                    System.out.println( nodoActual );
                     continue;
                     //return "Deu ruim";
                 }
@@ -130,32 +135,35 @@ public class StopAll {
                         continue;
                     }
                     
-                }
-
-
-                //comprobando si existe el nodo objetivo en tal lista objetivo
-                if ( l[ nodoActual ].listVertex.indexOf( nodoObjetivo ) != -1 ) 
-                {
-                    return "Lets que lets";
-                }else
-                {
-//                    System.out.println("==== Agrega nodos que no existen, PRE son: ===");
-//                    System.out.println( returnStringArray(  setToQueue.toArray()  )  );
-//                    System.out.println("====/.========================================");
-                    setToQueue.addAll( q ) ;
-//                    System.out.println("=== Agrega nodos que no existen, POST son: ===");
-//                    System.out.println( returnStringArray(  setToQueue.toArray()  ) );
-//                    System.out.println("====/.========================================");
-//                    
-                    setToQueue.addAll( l[ nodoActual ].listVertex ) ;
-                    q.clear();
-                    q.addAll( setToQueue );
-//                    System.out.println("============ La cola es, POST son: ===========");
-//                    System.out.println( q.toString() );
-//                    System.out.println("tope es: " + q.poll());
-//                    System.out.println("====/.====================================");
+                    q.add( arrVisitados[ l[nodoActual].listVertex.get(i) ] );
                     
                 }
+
+
+                //<>
+                //comprobando si existe el nodo objetivo en tal lista objetivo
+//                if ( l[ nodoActual ].listVertex.indexOf( nodoObjetivo ) != -1 ) 
+//                {
+//                    return "Lets que lets";
+//                }else
+//                {
+////                    System.out.println("==== Agrega nodos que no existen, PRE son: ===");
+////                    System.out.println( returnStringArray(  setToQueue.toArray()  )  );
+////                    System.out.println("====/.========================================");
+//                    setToQueue.addAll( q ) ;
+////                    System.out.println("=== Agrega nodos que no existen, POST son: ===");
+////                    System.out.println( returnStringArray(  setToQueue.toArray()  ) );
+////                    System.out.println("====/.========================================");
+////                    
+//                    setToQueue.addAll( l[ nodoActual ].listVertex ) ;
+//                    q.clear();
+//                    q.addAll( setToQueue );
+////                    System.out.println("============ La cola es, POST son: ===========");
+////                    System.out.println( q.toString() );
+////                    System.out.println("tope es: " + q.poll());
+////                    System.out.println("====/.====================================");
+//                    
+//                }
                 
                 
             }
@@ -189,11 +197,11 @@ public class StopAll {
             if ( ( arrVecindario[ ArrAyB[0] - 1 ] == null ) ) 
             {
                 arrVecindario[ ArrAyB[0] - 1 ] = new Vecindario( new ArrayList() );
-                //arrVecindario[ ArrAyB[1] - 1 ] = new Vecindario( new ArrayList() );
+                arrVecindario[ ArrAyB[1] - 1 ] = new Vecindario( new ArrayList() );
             }
             
             arrVecindario[ ArrAyB[0] - 1 ].listVertex.add( ArrAyB[1] - 1 );
-            //arrVecindario[ ArrAyB[1] - 1 ].listVertex.add( ArrAyB[0] - 1 );
+            arrVecindario[ ArrAyB[1] - 1 ].listVertex.add( ArrAyB[0] - 1 );
             //para asignacion de valores siempre restar uno
         }
         String salida = "";
@@ -207,6 +215,8 @@ public class StopAll {
             salida = letsOrDeur( ArrKyL[0] - 1 , ArrKyL[ 1 ] - 1  , arrVecindario );
             if ( !salida.equals("Lets que lets") ) 
             {
+                System.out.println(">FIN DE PRIMER PROCESP<");
+                System.out.println("BUELTA 2");
                 salida = letsOrDeur( ArrKyL[1] - 1 , ArrKyL[ 0 ] - 1  , arrVecindario );
             }
             System.out.println(salida);
